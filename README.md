@@ -1,4 +1,4 @@
-# otpless_auth
+# riverpod_flutter
 
 A new Flutter project.
 
