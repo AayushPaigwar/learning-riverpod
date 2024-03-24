@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
+import 'package:riverpod_flutter/models/user.dart';
 
-// Provider in Riverpod
+// Provider
 
 // We can only use this value (can't change it)
 //final counter = ref.watch(counterProvider);
@@ -42,3 +44,19 @@ class CounterNotifier extends ChangeNotifier {
 }
 
 final isDarkThemeProvider = StateProvider((ref) => false);
+
+//Future Provider
+ /*ConsumerStatefulWidget - Give Directly Access to ref */
+final userprovider = FutureProvider((ref) {
+  return http
+      .get(Uri.parse('https://jsonplaceholder.typicode.com/users'))
+      .then((value) => usersFromJson(value.body));
+});
+
+
+ 
+
+
+  //Stream Provider
+
+

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_flutter/providers/provider.dart';
+import 'package:riverpod_flutter/screens/users/my_user.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,13 +17,12 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isDarkTheme = ref.watch(isDarkThemeProvider);
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        brightness: isDarkTheme ? Brightness.dark : Brightness.light,
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(),
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          brightness: isDarkTheme ? Brightness.dark : Brightness.light,
+          useMaterial3: true,
+        ),
+        home: const MyUsers());
   }
 }
 
