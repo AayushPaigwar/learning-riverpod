@@ -12,8 +12,37 @@ class MyUsers extends ConsumerStatefulWidget {
 class _MyUsersState extends ConsumerState<MyUsers> {
   @override
   Widget build(BuildContext context) {
+    final isDarkTheme = ref.watch(isDarkThemeProvider);
     return ref.watch(userprovider).when(data: (data) {
+      //Dark Mode Button
+      Widget darkModeButton() {
+        return isDarkTheme
+            ? Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: IconButton(
+                    onPressed: () {
+                      ref.read(isDarkThemeProvider.notifier).state = false;
+                    },
+                    icon: const Icon(Icons.light_mode)),
+              )
+            : Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: IconButton(
+                    onPressed: () {
+                      ref.read(isDarkThemeProvider.notifier).state = true;
+                    },
+                    icon: const Icon(Icons.dark_mode)),
+              );
+      }
+
       return Scaffold(
+        appBar: AppBar(
+          title: const Text("Riverpod API Fetch"),
+          centerTitle: true,
+          actions: [
+            darkModeButton(),
+          ],
+        ),
         body: ListView.builder(
             itemCount: data.length,
             itemBuilder: (context, index) {
