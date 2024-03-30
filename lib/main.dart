@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_flutter/providers/provider.dart';
-import 'package:riverpod_flutter/screens/users/my_user.dart';
+
+import 'screens/users/grocery_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +23,7 @@ class MyApp extends ConsumerWidget {
           brightness: isDarkTheme ? Brightness.dark : Brightness.light,
           useMaterial3: true,
         ),
-        home: const MyUsers());
+        home: const GroceryScreeen());
   }
 }
 

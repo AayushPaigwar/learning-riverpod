@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
@@ -46,17 +48,29 @@ class CounterNotifier extends ChangeNotifier {
 final isDarkThemeProvider = StateProvider((ref) => false);
 
 //Future Provider
- /*ConsumerStatefulWidget - Give Directly Access to ref */
+/*ConsumerStatefulWidget - Give Directly Access to ref */
 final userprovider = FutureProvider((ref) {
   return http
       .get(Uri.parse('https://jsonplaceholder.typicode.com/users'))
       .then((value) => usersFromJson(value.body));
 });
 
+final cartProvider = StateNotifierProvider<Cart, List<int>>((ref) => Cart());
 
- 
+class Cart extends StateNotifier<List<int>> {
+  Cart() : super([]);
 
+  void add(int id) {
+    state = [...state, id];
+    log("Added to cart");
+  }
 
+  void remove(int id) {
+    state = state.where((element) => element != id).toList();
+    log("removed from the cart");
+  }
+}
+   
   //Stream Provider
 
 
